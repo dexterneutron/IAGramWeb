@@ -11,7 +11,7 @@ def index():
             ilist=GetFinalImages()
             return render_template('index.html',ilist=ilist)
     except:
-            return 'No pude generar las imagenes elmikiti'
+            return 'could not generate images'
  
 @app.route('/maker')
 def maker():
