@@ -21,7 +21,7 @@ def maker():
             return redirect('/')
 
     except:
-            return 'No pude generar las imagenes elmikiti'
+            return 'Could not generate the images'
 
 
 @app.route('/deleteall')
@@ -33,7 +33,7 @@ def deleteall():
             #InsertOutput()
             return redirect('/')
     except:
-            return 'No pude borrar las mmgvada yave'
+            return 'Could not delete the images'
  
 @app.route('/refreshall')
 def refreshall():
@@ -45,11 +45,7 @@ def refreshall():
             #InsertOutput()
             return redirect('/')
     except:
-            return 'No pude borrar las mmgvada yave'
-
-
-
+            return 'Could not refresh'
 
 if __name__ == "__main__":
     app.run(debug=True)
-
