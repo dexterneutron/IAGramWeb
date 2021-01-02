@@ -1,13 +1,13 @@
 from pymongo import MongoClient
 from bson.json_util import dumps
+from secrets import MONGOATLAS_STRING
 client = MongoClient()
-client = MongoClient('localhost', 27017)
+#client = MongoClient('localhost', 27017)
+client = MongoClient(MONGOATLAS_STRING)
 db = client.iagram
-#collection = db.iagram
 collection = db.iagram_weekly
 outputCollection=db.iagram_output
-
-
+print(db.list_collection_names())
 def InsertOutput(quoteid,background,filter,output):
     image = { "quote": quoteid, "background":background,"outputFile":output  }
     x = outputCollection.insert_one(image)
@@ -19,7 +19,6 @@ def GetFinalImages():
 def DeleteAllOutput():
     ilist=outputCollection.remove({})
 
-
 def RamdomQuote():
     #q = collection.find(query)
     q=collection.aggregate([{ "$sample": { "size": 1 }}])
@@ -28,12 +27,11 @@ def RamdomQuote():
         autor=(q['Autor'])
     return frase,autor
 
-
 def GetQuotesList():
     false=False
     #query='"$or":[{"Publicado" : {"$exists":False},"Publicado":{"$not":True}}]'
-    q=collection.find({"$or":[{"Publicado" : False,"Publicado":""}]})
-    #q=collection.find({})
+    #q=collection.find({"$or":[{"Publicado" : False,"Publicado":""}]})
+    q=collection.find({})
     return q
 
 def QuotebyId(id):
@@ -43,7 +41,8 @@ def QuotebyId(id):
     return frase,autor
 
 
-""" 
+
+
 q=GetQuotesList()
 for q in q:
         frase=(q['Frase'])
@@ -52,5 +51,5 @@ for q in q:
         print (autor)
 
 
-frase,autor=RamdomQuote()   
- """
+#frase,autor=RamdomQuote()   
+ 

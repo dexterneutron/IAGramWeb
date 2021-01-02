@@ -15,6 +15,7 @@ def index():
  
 @app.route('/maker')
 def maker():
+        
     try:
             AllImages()
             #InsertOutput()
